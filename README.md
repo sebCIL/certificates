@@ -12,8 +12,9 @@
 -  3️⃣  Certificate dissociation"
 -  4️⃣  Certificate association"
 
-
-## ⚠️ Tested only with Bash
+## ⚠️ Warning
+- Tested only with Bash
+- Don't forget to make the script executable. (`chmod +x renew.sh`)
 
 ## 📋 TODO:
 - Multi-partition
