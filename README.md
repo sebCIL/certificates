@@ -47,7 +47,7 @@
 
 ## ⚠️ Warning
 - Tested only with Bash
-- Don't forget to make the script executable. (`chmod +x renew.sh`)
+- Don't forget to make the script executable. (`chmod +x certificate.sh`)
 
 ## 📋 TODO:
 - Multi-partition
