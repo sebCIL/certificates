@@ -24,10 +24,7 @@ showWelcomeInitMessage() {
   echo -e "  4️⃣  The DCM password"
   echo ""
   echo -e "⚙️  The steps include:"
-  echo -e "  1️⃣  Connecting to the server"
-  echo -e "  2️⃣  Sending the certificate in DCM"
-  echo -e "  3️⃣  Certificate dissociation"
-  echo -e "  4️⃣  Certificate association"
+  showSteps
   read -p "Press [Enter] to begin... "
   echo ""
   clear
@@ -42,3 +39,9 @@ showTitle() {
     echo -e "$FONT_BOLD━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━$FONT_RESET"
 }
 
+showSteps() {
+  echo -e "  1️⃣  Connecting to the server"
+  echo -e "  2️⃣  Sending the certificate in DCM"
+  echo -e "  3️⃣  Certificate dissociation"
+  echo -e "  4️⃣  Certificate association"
+}
