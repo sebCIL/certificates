@@ -11,3 +11,9 @@
 -  2️⃣  Sending the certificate in DCM"
 -  3️⃣  Certificate dissociation"
 -  4️⃣  Certificate association"
+
+
+## ⚠️ Tested only with Bash
+
+## 📋 TODO:
+- Multi-partition
