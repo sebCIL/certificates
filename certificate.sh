@@ -6,7 +6,7 @@
 # Objet........ : Import and associate certificate
 # Création..... : 21/01/26 par Sébastien BOURREAU                            
 # Modifications :                                                            
-#  +    /  /   par                                                           
+#  +  27/01/26 par Sébastien BOURREAU: Multi server
 #============================================================================
 
 PATH=/QOpenSys/pkgs/bin:$PATH
@@ -19,9 +19,7 @@ source ./bin/connection-info.sh
 source ./bin/apis.sh
 source ./bin/checkCertificate.sh
 source ./env/applicationsList.sh
-
-hostname=$(hostname)
-BASEURL=https://$hostname:2012/rseapi/api/v1
+source ./env/serversList.sh
 
 while getopts ":hlcd" option; do
   case $option in
@@ -46,7 +44,7 @@ done
 showWelcomeInitMessage
 
 explainConnectionInfo
- 
+
 getConnectionUser
 echo ""
 getConnectionPwd
@@ -54,41 +52,50 @@ echo ""
 getDcmPwd
 
 explainCertificatInfo
- 
+
 getCertificatInfo
 echo ""
 getCertificatPwd
 echo ""
 getCertificatName
 echo ""
- 
-showTitle 📜 "Upload certificate on IBMi"
- 
+
 # Base64 encoding of the certificate
 certificatBase64=$( base64 -w 0 $certificat_path)
- 
-### Connection to the API
-connection
- 
-### Send the certificate in DCM
-sendCertificate
- 
-echo ""
 
-showTitle ⛓️‍💥 "Disassociate certificates"
- 
-### Certificate dissociation
-dissociate
+for server in "${!servers[@]}"
+  do
 
-echo ""
+    BASEURL=https://$server:${servers[$server]}/rseapi/api/v1
 
-showTitle 🔗 "Associate certificates"
- 
-### Certificate association
-associate
+    showTitle 📜 "Upload certificate on IBMi: $server"
+    
+    ### Connection to the API
+    connection
+    
+    ### Send the certificate in DCM
+    sendCertificate
+    
+    echo ""
 
-### Delete API session
-logout
- 
+    showTitle ⛓️‍💥 "Disassociate certificates"
+    
+    ### Certificate dissociation
+    dissociate
+
+    echo ""
+
+    showTitle 🔗 "Associate certificates"
+    
+    ### Certificate association
+    associate
+
+    ### Delete API session
+    logout
+
+    echo "✅ Server: $server done !"
+
+  done
+
 echo "💾 Check log files"
 echo "✅ Done !"

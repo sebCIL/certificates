@@ -1,9 +1,23 @@
 # Certificates
 
+This script allows you to send a certificate to one (or more) machines and assign it (or them) to applications.\
+This script use Remote System Explorer API (https://www.ibm.com/support/pages/node/6982701).
+
+The settings are configured in the files located in the env directory.
+
+⚠️ You MUST start start and secure the RSE API. ⚠️
+
+**Take note**: The script can be launch from an Linux server.
+
 ## ✅ Needed
-- SSH access
-- curl installed
+- On IBMi, the SSH Server is running (Command launch `STRTCPSVR SERVER(*SSHD)`)
+- SSH access to one IBMi
+- CURL installed
 - bash
+
+## Settings
+- `env/applicationsList.sh`: List the applications to be assigned
+- `env/serversList.sh`: List the servers and their associated ports
 
 ## Features
 
@@ -45,10 +59,13 @@
 - 2️⃣  Delete certificate
 - 3️⃣  Logout
 
+Parameters:
+- applications: env/applicationsList.sh
+- servers: env/serersList.sh
+
 ## ⚠️ Warning
 - Tested only with Bash
 - Don't forget to make the script executable. (`chmod +x certificate.sh`)
 
 ## 📋 TODO:
-- Multi-partition
 - Assign certificates to HTTPAdmin instances
